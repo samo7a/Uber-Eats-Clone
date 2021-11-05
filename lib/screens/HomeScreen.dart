@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uber/components/HeaderTabs.dart';
+import 'package:uber/components/Searchbar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             HeaderTabs(),
+            Searchbar(),
           ],
         ),
       ),

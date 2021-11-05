@@ -29,15 +29,19 @@ class _HeaderTabsState extends State<HeaderTabs> {
         return Container(
           padding: EdgeInsets.all(size.BLOCK_WIDTH),
           color: Colors.white,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
             children: [
-              HeaderButton(
-                text: "Delivery",
-              ),
-              HeaderButton(
-                text: "Pickup",
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  HeaderButton(
+                    text: "Delivery",
+                  ),
+                  HeaderButton(
+                    text: "Pickup",
+                  ),
+                ],
               ),
             ],
           ),
