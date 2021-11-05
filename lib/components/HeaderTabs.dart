@@ -22,10 +22,12 @@ class HeaderTabs extends StatefulWidget {
 class _HeaderTabsState extends State<HeaderTabs> {
   @override
   Widget build(BuildContext context) {
+    Size size = Size(context: context);
     return ChangeNotifierProvider<OrderType>(
       create: (context) => OrderType("Delivery"),
       builder: (BuildContext context, child) {
         return Container(
+          padding: EdgeInsets.all(size.BLOCK_WIDTH),
           color: Colors.white,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

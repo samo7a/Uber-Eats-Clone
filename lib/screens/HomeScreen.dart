@@ -8,8 +8,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Color(0xffeeeeee),
       child: SafeArea(
-        child: HeaderTabs(),
+        child: Column(
+          children: [
+            HeaderTabs(),
+          ],
+        ),
       ),
     );
   }
