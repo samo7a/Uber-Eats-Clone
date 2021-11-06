@@ -8,14 +8,17 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Color(0xffeeeeee),
-      child: SafeArea(
-        child: Column(
-          children: [
-            HeaderTabs(),
-            Searchbar(),
-          ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        backgroundColor: Color(0xffeeeeee),
+        body: SafeArea(
+          child: Column(
+            children: [
+              HeaderTabs(),
+              Searchbar(),
+            ],
+          ),
         ),
       ),
     );
