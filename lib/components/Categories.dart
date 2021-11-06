@@ -44,11 +44,12 @@ class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
-    return Padding(
-      padding: EdgeInsets.all(size.BLOCK_WIDTH * 5),
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.all(size.BLOCK_WIDTH * 2),
+      margin: EdgeInsets.only(top: size.BLOCK_HEIGHT * 1),
       child: SizedBox(
-        height: size.BLOCK_HEIGHT * 13,
-        width: size.BLOCK_WIDTH * 90,
+        height: size.BLOCK_HEIGHT * 10,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemCount: items.length,
