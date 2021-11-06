@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uber/components/Categories.dart';
 import 'package:uber/components/HeaderTabs.dart';
 import 'package:uber/components/Searchbar.dart';
 
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
             children: [
               HeaderTabs(),
               Searchbar(),
+              Categories(),
             ],
           ),
         ),
