@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uber/components/Categories.dart';
 import 'package:uber/components/HeaderTabs.dart';
-import 'package:uber/components/RestuarantItems.dart';
+import 'package:uber/components/RestaurantItems.dart';
 import 'package:uber/components/Searchbar.dart';
 // import 'package:uber/util/Size.dart';
 

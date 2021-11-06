@@ -1,17 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uber/models/Order.dart';
 import 'package:uber/util/Size.dart';
 import 'package:provider/provider.dart';
-
-class OrderType with ChangeNotifier {
-  String _activeTap;
-  OrderType(this._activeTap);
-
-  String get activeTap => _activeTap;
-  set activeTap(String value) {
-    _activeTap = value;
-    notifyListeners();
-  }
-}
 
 class HeaderTabs extends StatefulWidget {
   const HeaderTabs({Key? key}) : super(key: key);
@@ -23,30 +13,25 @@ class _HeaderTabsState extends State<HeaderTabs> {
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
-    return ChangeNotifierProvider<OrderType>(
-      create: (context) => OrderType("Delivery"),
-      builder: (BuildContext context, child) {
-        return Container(
-          padding: EdgeInsets.all(size.BLOCK_WIDTH),
-          color: Colors.white,
-          child: Column(
+    return Container(
+      padding: EdgeInsets.all(size.BLOCK_WIDTH),
+      color: Colors.white,
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  HeaderButton(
-                    text: "Delivery",
-                  ),
-                  HeaderButton(
-                    text: "Pickup",
-                  ),
-                ],
+              HeaderButton(
+                text: "Delivery",
+              ),
+              HeaderButton(
+                text: "Pickup",
               ),
             ],
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 }
@@ -73,9 +58,9 @@ class _HeaderButtonState extends State<HeaderButton> {
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
-    OrderType order = Provider.of<OrderType>(context, listen: false);
+    Order order = Provider.of<Order>(context, listen: false);
     return Container(
-      child: Consumer<OrderType>(
+      child: Consumer<Order>(
         builder: (BuildContext context, value, Widget? child) {
           return ElevatedButton(
             style: ButtonStyle(
