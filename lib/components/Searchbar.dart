@@ -19,14 +19,6 @@ class _SearchbarState extends State<Searchbar> {
   final controller = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    // controller.addListener(() {
-    //   onChanged();
-    // });
-  }
-
-  @override
   void dispose() {
     super.dispose();
     controller.dispose();

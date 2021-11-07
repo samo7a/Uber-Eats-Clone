@@ -1,39 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:uber/models/Restaurants.dart';
 import 'package:uber/util/Size.dart';
+import 'package:provider/provider.dart';
 
-class RestuarantItems extends StatelessWidget {
-  const RestuarantItems({Key? key}) : super(key: key);
 
-  static const List<Map<String, dynamic>> localRestaurants = [
-    {
-      "name": "Beachside Bar",
-      "image_url":
-          "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg",
-      "categories": ["Cafe", "Bar"],
-      "price": "\$\$",
-      "reviews": 1244,
-      "rating": 4.5,
-    },
-    {
-      "name": "Benihana",
-      "image_url":
-          "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-      "categories": ["Cafe", "Bar"],
-      "price": "\$",
-      "reviews": 1244,
-      "rating": 3.7,
-    },
-    {
-      "name": "India's Grill",
-      "image_url":
-          "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80",
-      "categories": ["Indian", "Bar"],
-      "price": "\$\$\$",
-      "reviews": 700,
-      "rating": 4.9,
-    },
-  ];
+class RestuarantItems extends StatefulWidget {
+  const RestuarantItems({
+    Key? key,
+    // required this.localRestaurants,
+  }) : super(key: key);
+  // final Restaurants localRestaurants;
+
+  @override
+  State<RestuarantItems> createState() => _RestuarantItemsState();
+}
+
+class _RestuarantItemsState extends State<RestuarantItems> {
+
 
   @override
   Widget build(BuildContext context) {
@@ -43,22 +27,34 @@ class RestuarantItems extends StatelessWidget {
       child: Container(
         color: Colors.white,
         padding: EdgeInsets.all(size.BLOCK_WIDTH * 3),
-        margin: EdgeInsets.only(top: size.BLOCK_HEIGHT * 1),
-        child: Column(
-          children: [
-            for (int i = 0; i < localRestaurants.length; i++)
-              Column(
-                children: [
-                  RestaurantImage(
-                    image: localRestaurants[i]["image_url"],
+        margin: EdgeInsets.only(
+          top: size.BLOCK_HEIGHT * 1,
+          bottom: size.BLOCK_HEIGHT * 4,
+        ),
+        child: Consumer<Restaurants>(
+          builder: (context, value, index) {
+            return Column(
+              children: [
+                for (int i = 0; i < value.restaurants.length; i++)
+                  Column(
+                    children: [
+                      RestaurantImage(
+                        image: value.restaurants[i].image_url,
+                      ),
+                      RestaurantInfo(
+                        name: value.restaurants[i].name,
+                        rating: value.restaurants[i].rating,
+                      ),
+                      Divider(
+                        thickness: 3,
+                        color: Colors.black,
+                      ),
+                      SizedBox(height: size.BLOCK_HEIGHT * 1),
+                    ],
                   ),
-                  RestaurantInfo(
-                    name: localRestaurants[i]["name"],
-                    rating: localRestaurants[i]["rating"],
-                  )
-                ],
-              ),
-          ],
+              ],
+            );
+          },
         ),
       ),
     );
@@ -79,7 +75,6 @@ class RestaurantImage extends StatelessWidget {
       children: [
         Image.network(
           image,
-          // scale: 0.5,
         ),
         Positioned(
           right: size.BLOCK_WIDTH * 5,
@@ -110,7 +105,7 @@ class RestaurantInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = Size(context: context);
     return Padding(
-      padding: EdgeInsets.all(size.BLOCK_WIDTH * 2),
+      padding: EdgeInsets.all(size.BLOCK_WIDTH * 3),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,

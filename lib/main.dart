@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uber/models/Order.dart';
+import 'package:uber/models/Restaurants.dart';
 import 'package:uber/screens/HomeScreen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<Order>(
           create: (context) => Order("Delivery"),
+        ),
+        ChangeNotifierProvider<Restaurants>(
+          create: (context) => Restaurants([]),
         ),
       ],
       builder: (BuildContext context, child) {
