@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uber/components/RestaurantDetails/About.dart';
+import 'package:uber/components/RestaurantDetails/MenuItems.dart';
 
 class RestaurantDetails extends StatefulWidget {
   const RestaurantDetails({Key? key}) : super(key: key);
@@ -20,7 +21,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
             Divider(
               thickness: 2,
             ),
-            Text("Restaurant Details"),
+            MenuItems(),
           ],
         ),
       ),
