@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:uber/models/Order.dart';
+import 'package:uber/models/OrderType.dart';
 import 'package:uber/util/Size.dart';
 import 'package:provider/provider.dart';
 
@@ -58,9 +58,9 @@ class _HeaderButtonState extends State<HeaderButton> {
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
-    Order order = Provider.of<Order>(context, listen: false);
+    OrderType order = Provider.of<OrderType>(context, listen: false);
     return Container(
-      child: Consumer<Order>(
+      child: Consumer<OrderType>(
         builder: (BuildContext context, value, Widget? child) {
           return ElevatedButton(
             style: ButtonStyle(

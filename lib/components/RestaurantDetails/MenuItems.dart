@@ -94,6 +94,9 @@ class _MenuItemsState extends State<MenuItems> {
                   ),
                 ],
               ),
+            SizedBox(
+              height: size.BLOCK_HEIGHT * 2,
+            ),
           ],
         ),
       ),

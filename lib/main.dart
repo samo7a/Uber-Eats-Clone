@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uber/Tabs.dart';
-import 'package:uber/models/Order.dart';
+import 'package:uber/models/OrderType.dart';
 import 'package:uber/models/Restaurants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<Order>(
-          create: (context) => Order("Delivery", "US"),
+        ChangeNotifierProvider<OrderType>(
+          create: (context) => OrderType("Delivery", "US"),
         ),
         ChangeNotifierProvider<Restaurants>(
           create: (context) => Restaurants([]),

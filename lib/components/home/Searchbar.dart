@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import "package:http/http.dart" as http;
-import 'package:uber/models/Order.dart';
+import 'package:uber/models/OrderType.dart';
 import 'package:uber/util/Size.dart';
 import 'package:provider/provider.dart';
 
@@ -16,14 +16,14 @@ class Searchbar extends StatefulWidget {
 
 class _SearchbarState extends State<Searchbar> {
   String location = "";
-  late Order order;
+  late OrderType order;
   List<dynamic> placeList = [];
   final controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    order = Provider.of<Order>(context, listen: false);
+    order = Provider.of<OrderType>(context, listen: false);
   }
 
   @override

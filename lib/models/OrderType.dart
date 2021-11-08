@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class Order with ChangeNotifier {
+class OrderType with ChangeNotifier {
   String _activeTap;
   String _location;
-  Order(this._activeTap, this._location);
+  OrderType(this._activeTap, this._location);
 
   String get activeTap => _activeTap;
   set activeTap(String value) {

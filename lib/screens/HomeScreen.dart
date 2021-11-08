@@ -6,7 +6,7 @@ import 'package:uber/components/home/RestaurantItems.dart';
 import 'package:uber/components/home/Searchbar.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
-import 'package:uber/models/Order.dart';
+import 'package:uber/models/OrderType.dart';
 import 'package:uber/models/Restaurants.dart';
 import 'package:provider/provider.dart';
 
@@ -23,14 +23,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String yelpApiKey;
   late Restaurants restaurants;
-  late Order order;
+  late OrderType order;
 
   @override
   void initState() {
     super.initState();
     yelpApiKey = dotenv.get("YELP");
     restaurants = Provider.of<Restaurants>(context, listen: false);
-    order = Provider.of<Order>(context, listen: false);
+    order = Provider.of<OrderType>(context, listen: false);
     getRestaurantsFromYelp();
     order.addListener(() {
       restaurants.restaurants = [];
@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> getRestaurantsFromYelp() async {
-    order = Provider.of<Order>(context, listen: false);
+    order = Provider.of<OrderType>(context, listen: false);
     String yelpUrl =
         "https://api.yelp.com/v3/businesses/search?term=restaurants&location=${order.location}";
     try {
