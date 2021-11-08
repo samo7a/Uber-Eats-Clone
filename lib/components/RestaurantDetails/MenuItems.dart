@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:uber/util/Size.dart';
 
-class MenuItems extends StatelessWidget {
+class MenuItems extends StatefulWidget {
   MenuItems({Key? key}) : super(key: key);
+
+  @override
+  State<MenuItems> createState() => _MenuItemsState();
+}
+
+class _MenuItemsState extends State<MenuItems> {
   final List<Map<String, String>> foods = [
     {
       "title": "Lasagna",
@@ -35,6 +41,9 @@ class MenuItems extends StatelessWidget {
           "https://www.recipetineats.com/wp-content/uploads/2016/05/Caesar-Salad_7-SQ.jpg",
     },
   ];
+
+  bool val = true;
+
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
@@ -47,6 +56,20 @@ class MenuItems extends StatelessWidget {
                 children: [
                   Row(
                     children: [
+                      Checkbox(
+                        value: val,
+                        side: BorderSide(
+                          width: 16.5,
+                          color: Colors.grey.shade400,
+                        ),
+                        fillColor: MaterialStateProperty.all(Colors.green[400]),
+                        splashRadius: 50,
+                        onChanged: (value) {
+                          setState(() {
+                            val = value!;
+                          });
+                        },
+                      ),
                       SizedBox(
                         width: size.BLOCK_WIDTH * 3,
                       ),
