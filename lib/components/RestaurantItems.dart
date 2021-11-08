@@ -7,9 +7,7 @@ import 'package:provider/provider.dart';
 class RestuarantItems extends StatefulWidget {
   const RestuarantItems({
     Key? key,
-    // required this.localRestaurants,
   }) : super(key: key);
-  // final Restaurants localRestaurants;
 
   @override
   State<RestuarantItems> createState() => _RestuarantItemsState();
@@ -21,38 +19,45 @@ class _RestuarantItemsState extends State<RestuarantItems> {
     Size size = Size(context: context);
     return GestureDetector(
       onTap: () {},
-      child: Container(
-        color: Colors.white,
-        padding: EdgeInsets.all(size.BLOCK_WIDTH * 3),
-        margin: EdgeInsets.only(
-          top: size.BLOCK_HEIGHT * 1,
-          bottom: size.BLOCK_HEIGHT * 4,
-        ),
-        child: Consumer<Restaurants>(
-          builder: (context, value, index) {
-            return Column(
-              children: [
-                for (int i = 0; i < value.restaurants.length; i++)
-                  Column(
+      child: Consumer<Restaurants>(
+        builder: (context, value, index) {
+          return Container(
+            color: value.restaurants.length == 0
+                ? Colors.transparent
+                : Colors.white,
+            padding: EdgeInsets.all(size.BLOCK_WIDTH * 3),
+            margin: EdgeInsets.only(
+              top: size.BLOCK_HEIGHT * 1,
+              bottom: size.BLOCK_HEIGHT * 4,
+            ),
+            child: value.restaurants.length == 0
+                ? CircularProgressIndicator(
+                    backgroundColor: Colors.transparent,
+                    color: Colors.black,
+                  )
+                : Column(
                     children: [
-                      RestaurantImage(
-                        image: value.restaurants[i].image_url,
-                      ),
-                      RestaurantInfo(
-                        name: value.restaurants[i].name,
-                        rating: value.restaurants[i].rating,
-                      ),
-                      Divider(
-                        thickness: 3,
-                        color: Colors.black,
-                      ),
-                      SizedBox(height: size.BLOCK_HEIGHT * 1),
+                      for (int i = 0; i < value.restaurants.length; i++)
+                        Column(
+                          children: [
+                            RestaurantImage(
+                              image: value.restaurants[i].image_url,
+                            ),
+                            RestaurantInfo(
+                              name: value.restaurants[i].name,
+                              rating: value.restaurants[i].rating,
+                            ),
+                            Divider(
+                              thickness: 3,
+                              color: Colors.black,
+                            ),
+                            SizedBox(height: size.BLOCK_HEIGHT * 1),
+                          ],
+                        ),
                     ],
                   ),
-              ],
-            );
-          },
-        ),
+          );
+        },
       ),
     );
   }

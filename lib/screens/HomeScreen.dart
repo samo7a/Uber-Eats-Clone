@@ -47,7 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
           headers: {"Authorization": "Bearer $yelpApiKey"});
       final data = jsonDecode(response.body);
       List array = data["businesses"];
-      print(data);
       int length = array.length;
       for (int i = 0; i < length; i++) {
         List transactions = array[i]["transactions"] ?? [];
@@ -68,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
           for (int j = 0; j < categories.length; j++) {
             myCategories.add(categories[j]["title"] ?? "");
           }
-
           restaurants.addRestaurant = Restaurant(
             name: name,
             image_url: image_url,
