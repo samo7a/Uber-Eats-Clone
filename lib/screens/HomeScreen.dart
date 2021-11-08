@@ -39,11 +39,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> getRestaurantsFromYelp() async {
-    // setState(() {
-    // if (mounted) restaurants.restaurants = [];
-    // });
-
-    print("start of getRest");
     order = Provider.of<Order>(context, listen: false);
     String yelpUrl =
         "https://api.yelp.com/v3/businesses/search?term=restaurants&location=${order.location}";
@@ -52,33 +47,41 @@ class _HomeScreenState extends State<HomeScreen> {
           headers: {"Authorization": "Bearer $yelpApiKey"});
       final data = jsonDecode(response.body);
       List array = data["businesses"];
+      print(data);
       int length = array.length;
       for (int i = 0; i < length; i++) {
-        print(i);
-        String name = array[i]["name"] ?? "";
-        String image_url = array[i]["image_url"] ??
-            "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg";
-        double rating = array[i]["rating"] ?? 0.0;
-        String price = array[i]["price"] ?? "\$";
-        int review_count = array[i]["review_count"] ?? 0;
-        List categories = array[i]["categories"] ?? [];
-        List<String> myCategories = [];
-        for (int j = 0; j < categories.length; j++) {
-          myCategories.add(categories[j]["title"] ?? "");
+        List transactions = array[i]["transactions"] ?? [];
+        String orderType = order.activeTap.toLowerCase();
+        bool containsOrderType = false;
+        for (int k = 0; k < transactions.length; k++) {
+          if (transactions[k] == orderType) containsOrderType = true;
         }
-        restaurants.addRestaurant = Restaurant(
-          name: name,
-          image_url: image_url,
-          rating: rating,
-          review_count: review_count,
-          price: price,
-          categories: myCategories,
-        );
+        if (containsOrderType) {
+          String name = array[i]["name"] ?? "";
+          String image_url = array[i]["image_url"] ??
+              "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg";
+          double rating = array[i]["rating"] ?? 0.0;
+          String price = array[i]["price"] ?? "\$";
+          int review_count = array[i]["review_count"] ?? 0;
+          List categories = array[i]["categories"] ?? [];
+          List<String> myCategories = [];
+          for (int j = 0; j < categories.length; j++) {
+            myCategories.add(categories[j]["title"] ?? "");
+          }
+
+          restaurants.addRestaurant = Restaurant(
+            name: name,
+            image_url: image_url,
+            rating: rating,
+            review_count: review_count,
+            price: price,
+            categories: myCategories,
+          );
+        }
       }
     } catch (e) {
       print(e);
     }
-    print("end of getRestaurants");
   }
 
   @override
