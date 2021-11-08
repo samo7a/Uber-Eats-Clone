@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:uber/components/Categories.dart';
-import 'package:uber/components/HeaderTabs.dart';
-import 'package:uber/components/RestaurantItems.dart';
-import 'package:uber/components/Searchbar.dart';
+import 'package:uber/components/home/Categories.dart';
+import 'package:uber/components/home/HeaderTabs.dart';
+import 'package:uber/components/home/RestaurantItems.dart';
+import 'package:uber/components/home/Searchbar.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:uber/models/Order.dart';

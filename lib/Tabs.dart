@@ -41,7 +41,7 @@ class _TabsState extends State<Tabs> {
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 5,
+        elevation: 0,
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -67,6 +67,7 @@ class _TabsState extends State<Tabs> {
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
+        enableFeedback: true,
         type: BottomNavigationBarType.shifting,
         onTap: _onItemTapped,
       ),
