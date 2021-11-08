@@ -41,16 +41,21 @@ class RestaurantImage extends StatelessWidget {
       children: [
         SizedBox(
           width: double.infinity,
-          child: Image.network(image),
+          child: Image.network(
+            image,
+            fit: BoxFit.cover,
+            height: size.BLOCK_WIDTH * 70,
+          ),
         ),
         Positioned(
-          left: size.BLOCK_WIDTH * 7,
-          top: size.BLOCK_WIDTH * 7,
+          left: size.BLOCK_WIDTH * 5,
+          top: size.BLOCK_WIDTH * 10,
           child: GestureDetector(
             onTap: () => Navigator.pop(context),
             child: Icon(
               Icons.arrow_back_ios,
               color: Colors.white,
+              size: size.FONT_SIZE * 30,
             ),
           ),
         ),
