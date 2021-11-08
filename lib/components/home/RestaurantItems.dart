@@ -125,7 +125,7 @@ class RestaurantInfo extends StatelessWidget {
               ),
               SizedBox(height: size.BLOCK_HEIGHT * 1),
               Text(
-                "30-45 * min",
+                "30-45 • min",
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: size.FONT_SIZE * 13,
