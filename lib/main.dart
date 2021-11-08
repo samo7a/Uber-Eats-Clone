@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<Order>(
-          create: (context) => Order("Delivery"),
+          create: (context) => Order("Delivery", "US"),
         ),
         ChangeNotifierProvider<Restaurants>(
           create: (context) => Restaurants([]),

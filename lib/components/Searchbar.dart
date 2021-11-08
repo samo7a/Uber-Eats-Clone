@@ -1,10 +1,11 @@
 import 'dart:convert';
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import "package:http/http.dart" as http;
+import 'package:uber/models/Order.dart';
 import 'package:uber/util/Size.dart';
+import 'package:provider/provider.dart';
 
 class Searchbar extends StatefulWidget {
   const Searchbar({Key? key}) : super(key: key);
@@ -15,8 +16,15 @@ class Searchbar extends StatefulWidget {
 
 class _SearchbarState extends State<Searchbar> {
   String location = "";
+  late Order order;
   List<dynamic> placeList = [];
   final controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    order = Provider.of<Order>(context, listen: false);
+  }
 
   @override
   void dispose() {
@@ -37,7 +45,7 @@ class _SearchbarState extends State<Searchbar> {
         '$baseURL?input=$input&key=$kPLACES_API_KEY&sessiontoken=$sessionToken&language=en&country=us';
     var response = await http.get(Uri.parse(request));
     if (response.statusCode == 200) {
-      if (mounted && input != controller.text)
+      if (mounted && input.trim() != location.trim())
         setState(() {
           placeList = json.decode(response.body)['predictions'];
         });
@@ -86,7 +94,7 @@ class _SearchbarState extends State<Searchbar> {
                   ),
                   child: Padding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: size.BLOCK_WIDTH * 3),
+                        EdgeInsets.symmetric(horizontal: size.BLOCK_WIDTH * 2),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,7 +102,7 @@ class _SearchbarState extends State<Searchbar> {
                         Icon(
                           Icons.timelapse,
                           color: Colors.black,
-                          size: size.FONT_SIZE * 17,
+                          size: size.FONT_SIZE * 15,
                         ),
                         SizedBox(
                           width: size.BLOCK_WIDTH * 1,
@@ -142,13 +150,16 @@ class _SearchbarState extends State<Searchbar> {
                         // controller.addListener(onChanged);
                         String value = placeList[index]["description"];
                         FocusScope.of(context).unfocus();
-                        controller.removeListener(() {
-                          setState(() {
-                            placeList.clear();
-                          });
-                        });
+                        controller.removeListener(onChanged);
+                        // controller.removeListener(() {
+                        //   setState(() {
+                        //     placeList.clear();
+                        //   });
+                        // });
                         setState(() {
+                          placeList.clear();
                           location = value;
+                          order.location = value;
                           controller.text = value;
                           placeList.clear();
                         });

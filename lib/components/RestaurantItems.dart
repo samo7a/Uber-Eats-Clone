@@ -4,7 +4,6 @@ import 'package:uber/models/Restaurants.dart';
 import 'package:uber/util/Size.dart';
 import 'package:provider/provider.dart';
 
-
 class RestuarantItems extends StatefulWidget {
   const RestuarantItems({
     Key? key,
@@ -17,8 +16,6 @@ class RestuarantItems extends StatefulWidget {
 }
 
 class _RestuarantItemsState extends State<RestuarantItems> {
-
-
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);

@@ -49,7 +49,7 @@ class _CategoriesState extends State<Categories> {
       padding: EdgeInsets.all(size.BLOCK_WIDTH * 2),
       margin: EdgeInsets.only(top: size.BLOCK_HEIGHT * 1),
       child: SizedBox(
-        height: size.BLOCK_HEIGHT * 10,
+        height: size.BLOCK_HEIGHT * 12,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemCount: items.length,
