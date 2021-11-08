@@ -86,25 +86,22 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        backgroundColor: Colors.grey[300],
-        body: SafeArea(
-          child: Column(
-            children: [
-              HeaderTabs(),
-              Searchbar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Categories(),
-                      RestuarantItems(),
-                    ],
-                  ),
+      child: SafeArea(
+        child: Column(
+          children: [
+            HeaderTabs(),
+            Searchbar(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Categories(),
+                    RestuarantItems(),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

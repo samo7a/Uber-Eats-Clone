@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:uber/Tabs.dart';
 import 'package:uber/models/Order.dart';
 import 'package:uber/models/Restaurants.dart';
-import 'package:uber/screens/HomeScreen.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 
@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
-          initialRoute: HomeScreen.id,
+          initialRoute: Tabs.id,
           routes: {
-            HomeScreen.id: (context) => HomeScreen(),
+            Tabs.id: (context) => Tabs(),
           },
         );
       },
