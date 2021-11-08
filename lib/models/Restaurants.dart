@@ -18,6 +18,7 @@ class Restaurants with ChangeNotifier {
 }
 
 class Restaurant {
+  int index;
   String name;
   String image_url;
   double rating;
@@ -26,6 +27,7 @@ class Restaurant {
   List<String> categories;
 
   Restaurant({
+    required this.index,
     required this.name,
     required this.image_url,
     required this.rating,

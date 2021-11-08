@@ -29,8 +29,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
-          initialRoute: RestaurantDetails.id,
-          //initialRoute : Tabs.id,
+          initialRoute: Tabs.id,
           routes: {
             Tabs.id: (context) => Tabs(),
             RestaurantDetails.id: (context) => RestaurantDetails(),

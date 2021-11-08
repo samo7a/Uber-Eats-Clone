@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:uber/models/Restaurants.dart';
+import 'package:uber/screens/RestaurantDetails.dart';
 import 'package:uber/util/Size.dart';
 import 'package:provider/provider.dart';
 
@@ -17,48 +18,45 @@ class _RestuarantItemsState extends State<RestuarantItems> {
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
-    return GestureDetector(
-      onTap: () {},
-      child: Consumer<Restaurants>(
-        builder: (context, value, index) {
-          return Container(
-            color: value.restaurants.length == 0
-                ? Colors.transparent
-                : Colors.white,
-            padding: EdgeInsets.all(size.BLOCK_WIDTH * 3),
-            margin: EdgeInsets.only(
-              top: size.BLOCK_HEIGHT * 1,
-              bottom: size.BLOCK_HEIGHT * 4,
-            ),
-            child: value.restaurants.length == 0
-                ? CircularProgressIndicator(
-                    backgroundColor: Colors.transparent,
-                    color: Colors.black,
-                  )
-                : Column(
-                    children: [
-                      for (int i = 0; i < value.restaurants.length; i++)
-                        Column(
-                          children: [
-                            RestaurantImage(
-                              image: value.restaurants[i].image_url,
-                            ),
-                            RestaurantInfo(
-                              name: value.restaurants[i].name,
-                              rating: value.restaurants[i].rating,
-                            ),
-                            Divider(
-                              thickness: 3,
-                              color: Colors.black,
-                            ),
-                            SizedBox(height: size.BLOCK_HEIGHT * 1),
-                          ],
-                        ),
-                    ],
-                  ),
-          );
-        },
-      ),
+    return Consumer<Restaurants>(
+      builder: (context, value, child) {
+        return Container(
+          color:
+              value.restaurants.length == 0 ? Colors.transparent : Colors.white,
+          padding: EdgeInsets.all(size.BLOCK_WIDTH * 3),
+          margin: EdgeInsets.only(
+            top: size.BLOCK_HEIGHT * 1,
+            bottom: size.BLOCK_HEIGHT * 4,
+          ),
+          child: value.restaurants.length == 0
+              ? CircularProgressIndicator(
+                  backgroundColor: Colors.transparent,
+                  color: Colors.black,
+                )
+              : Column(
+                  children: [
+                    for (int i = 0; i < value.restaurants.length; i++)
+                      Column(
+                        children: [
+                          RestaurantImage(
+                            index: i,
+                            image: value.restaurants[i].image_url,
+                          ),
+                          RestaurantInfo(
+                            name: value.restaurants[i].name,
+                            rating: value.restaurants[i].rating,
+                          ),
+                          Divider(
+                            thickness: 3,
+                            color: Colors.black,
+                          ),
+                          SizedBox(height: size.BLOCK_HEIGHT * 1),
+                        ],
+                      ),
+                  ],
+                ),
+        );
+      },
     );
   }
 }
@@ -67,16 +65,25 @@ class RestaurantImage extends StatelessWidget {
   const RestaurantImage({
     Key? key,
     required this.image,
+    required this.index,
   }) : super(key: key);
   final String image;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
     return Stack(
       children: [
-        Image.network(
-          image,
+        GestureDetector(
+          onTap: () => Navigator.pushNamed(
+            context,
+            RestaurantDetails.id,
+            arguments: index,
+          ),
+          child: Image.network(
+            image,
+          ),
         ),
         Positioned(
           right: size.BLOCK_WIDTH * 5,

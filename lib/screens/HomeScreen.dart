@@ -68,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
             myCategories.add(categories[j]["title"] ?? "");
           }
           restaurants.addRestaurant = Restaurant(
+            index: i,
             name: name,
             image_url: image_url,
             rating: rating,

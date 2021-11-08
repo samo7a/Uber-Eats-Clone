@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:uber/util/Size.dart';
 
 class About extends StatelessWidget {
-  const About({Key? key}) : super(key: key);
-  final String title = "Farmhouse Kitchen Thai Cuisine";
-  final String description = "Thai • Comfort Food • \$\$ • 💳 • ⭐ (299+)";
-  final String image =
-      "https://static.onecms.io/wp-content/uploads/sites/9/2020/04/24/ppp-why-wont-anyone-rescue-restaurants-FT-BLOG0420.jpg";
+  const About({
+    Key? key,
+    required this.image,
+    required this.title,
+    required this.description,
+  }) : super(key: key);
+  final String title;
+  final String description;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -32,9 +36,25 @@ class RestaurantImage extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Image.network(image),
+    Size size = Size(context: context);
+    return Stack(
+      children: [
+        SizedBox(
+          width: double.infinity,
+          child: Image.network(image),
+        ),
+        Positioned(
+          left: size.BLOCK_WIDTH * 7,
+          top: size.BLOCK_WIDTH * 7,
+          child: GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
