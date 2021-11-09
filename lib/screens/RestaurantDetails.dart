@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uber/components/RestaurantDetails/About.dart';
 import 'package:uber/components/RestaurantDetails/MenuItems.dart';
+import 'package:uber/models/Cart.dart';
 import 'package:uber/models/Restaurants.dart';
 import 'package:provider/provider.dart';
 import 'package:uber/util/Size.dart';
@@ -18,29 +19,44 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
+    Cart cart = context.watch<Cart>();
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: GestureDetector(
-        onTap: () {},
-        child: Container(
-          width: size.BLOCK_WIDTH * 50,
-          height: size.BLOCK_HEIGHT * 5,
-          decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            borderRadius: BorderRadius.all(Radius.circular(15)),
-            color: Colors.black,
-          ),
-          child: Center(
-            child: Text(
-              "View Cart",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: size.FONT_SIZE * 20,
+      floatingActionButton: cart.count == 0
+          ? Container()
+          : GestureDetector(
+              onTap: () {},
+              child: Container(
+                width: size.BLOCK_WIDTH * 50,
+                height: size.BLOCK_HEIGHT * 5,
+                decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
+                  color: Colors.black,
+                ),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "View Cart",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: size.FONT_SIZE * 20,
+                        ),
+                      ),
+                      Text(
+                        "\$${cart.totalPrice.toStringAsFixed(2)}",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: size.FONT_SIZE * 20,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      ),
       body: Consumer<Restaurants>(
         builder: (context, value, child) {
           Restaurant restaurant = value.restaurants[index];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uber/Tabs.dart';
+import 'package:uber/models/Cart.dart';
 import 'package:uber/models/OrderType.dart';
 import 'package:uber/models/Restaurants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<Restaurants>(
           create: (context) => Restaurants([]),
+        ),
+        ChangeNotifierProvider<Cart>(
+          create: (context) => Cart(),
         ),
       ],
       builder: (BuildContext context, child) {
