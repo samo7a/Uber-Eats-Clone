@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:uber/components/RestaurantDetails/About.dart';
 import 'package:uber/components/RestaurantDetails/MenuItems.dart';
 import 'package:uber/models/Cart.dart';
+import 'package:uber/models/MenuItem.dart';
 import 'package:uber/models/Restaurants.dart';
 import 'package:provider/provider.dart';
+import 'package:uber/screens/OrderCompleted.dart';
 import 'package:uber/util/Size.dart';
 
 class RestaurantDetails extends StatefulWidget {
@@ -17,6 +19,42 @@ class RestaurantDetails extends StatefulWidget {
 class _RestaurantDetailsState extends State<RestaurantDetails> {
   late final int index = ModalRoute.of(context)!.settings.arguments as int;
   bool showButtomSheet = false;
+  final List<MenuItem> foods = [
+    MenuItem(
+      id: 111.toString(),
+      title: "Lasagna",
+      description: "With butter lettuce, tomato and sauce bechamel",
+      price: 13.50,
+      image:
+          "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
+    ),
+    MenuItem(
+      id: 222.toString(),
+      title: "Tandoori Chicken",
+      description:
+          "Amazing Indian dish with tenderloin chicken off the sizzle 🔥",
+      price: 19.20,
+      image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
+    ),
+    MenuItem(
+      id: 333.toString(),
+      title: "Chilaquiles",
+      description:
+          "Chilaquiles with cheese and sauce. A delicious mexican dish",
+      price: 14.50,
+      image:
+          "https://upload.wikimedia.org/wikipedia/commons/3/3d/Portada-chilaquiles-rojos.jpg",
+    ),
+    MenuItem(
+      id: 444.toString(),
+      title: "Chicken Caesar Salad",
+      description:
+          "One can never go wrong with a chicken caesar salad. Healthy options with greens and proteins",
+      price: 11.99,
+      image:
+          "https://www.recipetineats.com/wp-content/uploads/2016/05/Caesar-Salad_7-SQ.jpg",
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     Size size = Size(context: context);
@@ -33,10 +71,6 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                   ),
                 ),
                 color: Colors.grey.withOpacity(0.1),
-                // borderRadius: BorderRadius.only(
-                //   topLeft: Radius.circular(10),
-                //   topRight: Radius.circular(10),
-                // ),
               ),
               height: size.BLOCK_HEIGHT * 50,
               width: double.infinity,
@@ -127,6 +161,11 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                         setState(() {
                           showButtomSheet = !showButtomSheet;
                         });
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          OrderCompleted.id,
+                          (route) => false,
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -157,6 +196,36 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      height: size.BLOCK_HEIGHT * 2,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          showButtomSheet = !showButtomSheet;
+                        });
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        width: size.BLOCK_WIDTH * 70,
+                        height: size.BLOCK_HEIGHT * 7.5,
+                        child: Center(
+                          child: Text(
+                            "Go Back",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: size.FONT_SIZE * 20,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: size.BLOCK_HEIGHT * 2,
                     ),
                   ],
                 ),
@@ -228,7 +297,7 @@ class _RestaurantDetailsState extends State<RestaurantDetails> {
                 Divider(
                   thickness: 2,
                 ),
-                MenuItems(),
+                MenuItems(foods: foods, showChecks: true),
               ],
             ),
           );

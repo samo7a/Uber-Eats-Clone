@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:uber/models/Cart.dart';
 import 'package:uber/models/Restaurants.dart';
 import 'package:uber/screens/RestaurantDetails.dart';
 import 'package:uber/util/Size.dart';
@@ -41,6 +42,7 @@ class _RestuarantItemsState extends State<RestuarantItems> {
                           RestaurantImage(
                             index: i,
                             image: value.restaurants[i].image_url,
+                            name: value.restaurants[i].name,
                           ),
                           RestaurantInfo(
                             name: value.restaurants[i].name,
@@ -66,9 +68,11 @@ class RestaurantImage extends StatelessWidget {
     Key? key,
     required this.image,
     required this.index,
+    required this.name,
   }) : super(key: key);
   final String image;
   final int index;
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -76,11 +80,15 @@ class RestaurantImage extends StatelessWidget {
     return Stack(
       children: [
         GestureDetector(
-          onTap: () => Navigator.pushNamed(
-            context,
-            RestaurantDetails.id,
-            arguments: index,
-          ),
+          onTap: () {
+            Cart cart = Provider.of<Cart>(context, listen: false);
+            cart.restName = name;
+            Navigator.pushNamed(
+              context,
+              RestaurantDetails.id,
+              arguments: index,
+            );
+          },
           child: Image.network(
             image,
           ),

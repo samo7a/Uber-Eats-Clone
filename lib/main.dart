@@ -5,6 +5,7 @@ import 'package:uber/models/OrderType.dart';
 import 'package:uber/models/Restaurants.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
+import 'package:uber/screens/OrderCompleted.dart';
 import 'package:uber/screens/RestaurantDetails.dart';
 
 void main() async {
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
           routes: {
             Tabs.id: (context) => Tabs(),
             RestaurantDetails.id: (context) => RestaurantDetails(),
+            OrderCompleted.id: (context) => OrderCompleted(),
           },
         );
       },

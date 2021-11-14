@@ -5,117 +5,25 @@ import 'package:uber/util/Size.dart';
 import 'package:provider/provider.dart';
 
 class MenuItems extends StatefulWidget {
-  MenuItems({Key? key}) : super(key: key);
-
+  MenuItems({
+    Key? key,
+    required this.foods,
+    required this.showChecks,
+  }) : super(key: key);
+  final List<MenuItem> foods;
+  final bool showChecks;
   @override
   State<MenuItems> createState() => _MenuItemsState();
 }
 
 class _MenuItemsState extends State<MenuItems> {
-  final List<MenuItem> foods = [
-    MenuItem(
-      id: 111.toString(),
-      title: "Lasagna",
-      description: "With butter lettuce, tomato and sauce bechamel",
-      price: 13.50,
-      image:
-          "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
-    ),
-    MenuItem(
-      id: 222.toString(),
-      title: "Tandoori Chicken",
-      description:
-          "Amazing Indian dish with tenderloin chicken off the sizzle 🔥",
-      price: 19.20,
-      image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
-    ),
-    MenuItem(
-      id: 333.toString(),
-      title: "Chilaquiles",
-      description:
-          "Chilaquiles with cheese and sauce. A delicious mexican dish",
-      price: 14.50,
-      image:
-          "https://upload.wikimedia.org/wikipedia/commons/3/3d/Portada-chilaquiles-rojos.jpg",
-    ),
-    MenuItem(
-      id: 444.toString(),
-      title: "Chicken Caesar Salad",
-      description:
-          "One can never go wrong with a chicken caesar salad. Healthy options with greens and proteins",
-      price: 11.99,
-      image:
-          "https://www.recipetineats.com/wp-content/uploads/2016/05/Caesar-Salad_7-SQ.jpg",
-    ),
-    MenuItem(
-      id: 115.toString(),
-      title: "Lasagna",
-      description: "With butter lettuce, tomato and sauce bechamel",
-      price: 13.50,
-      image:
-          "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
-    ),
-    MenuItem(
-      id: 226.toString(),
-      title: "Tandoori Chicken",
-      description:
-          "Amazing Indian dish with tenderloin chicken off the sizzle 🔥",
-      price: 19.20,
-      image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
-    ),
-    MenuItem(
-      id: 337.toString(),
-      title: "Chilaquiles",
-      description:
-          "Chilaquiles with cheese and sauce. A delicious mexican dish",
-      price: 14.50,
-      image:
-          "https://upload.wikimedia.org/wikipedia/commons/3/3d/Portada-chilaquiles-rojos.jpg",
-    ),
-    MenuItem(
-      id: 448.toString(),
-      title: "Chicken Caesar Salad",
-      description:
-          "One can never go wrong with a chicken caesar salad. Healthy options with greens and proteins",
-      price: 11.99,
-      image:
-          "https://www.recipetineats.com/wp-content/uploads/2016/05/Caesar-Salad_7-SQ.jpg",
-    ),
-    MenuItem(
-      id: 119.toString(),
-      title: "Lasagna",
-      description: "With butter lettuce, tomato and sauce bechamel",
-      price: 13.50,
-      image:
-          "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
-    ),
-    MenuItem(
-      id: 220.toString(),
-      title: "Tandoori Chicken",
-      description:
-          "Amazing Indian dish with tenderloin chicken off the sizzle 🔥",
-      price: 19.20,
-      image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
-    ),
-    MenuItem(
-      id: 331.toString(),
-      title: "Chilaquiles",
-      description:
-          "Chilaquiles with cheese and sauce. A delicious mexican dish",
-      price: 14.50,
-      image:
-          "https://upload.wikimedia.org/wikipedia/commons/3/3d/Portada-chilaquiles-rojos.jpg",
-    ),
-    MenuItem(
-      id: 442.toString(),
-      title: "Chicken Caesar Salad",
-      description:
-          "One can never go wrong with a chicken caesar salad. Healthy options with greens and proteins",
-      price: 11.99,
-      image:
-          "https://www.recipetineats.com/wp-content/uploads/2016/05/Caesar-Salad_7-SQ.jpg",
-    ),
-  ];
+  late final foods;
+  late final showChecks;
+  void initState() {
+    super.initState();
+    foods = widget.foods;
+    showChecks = widget.showChecks;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -131,27 +39,29 @@ class _MenuItemsState extends State<MenuItems> {
                     children: [
                       Row(
                         children: [
-                          Checkbox(
-                            value: cart.contains(foods[i].id),
-                            side: BorderSide(
-                              width: 16.5,
-                              color: Colors.grey.shade400,
-                            ),
-                            fillColor:
-                                MaterialStateProperty.all(Colors.green[400]),
-                            splashRadius: 50,
-                            onChanged: (bool? value) {
-                              if (value == true) {
-                                setState(() {
-                                  cart.addItem = foods[i];
-                                });
-                              } else if (value == false) {
-                                setState(() {
-                                  cart.removeItem = foods[i].id;
-                                });
-                              }
-                            },
-                          ),
+                          showChecks
+                              ? Checkbox(
+                                  value: cart.contains(foods[i].id),
+                                  side: BorderSide(
+                                    width: 16.5,
+                                    color: Colors.grey.shade400,
+                                  ),
+                                  fillColor: MaterialStateProperty.all(
+                                      Colors.green[400]),
+                                  splashRadius: 50,
+                                  onChanged: (bool? value) {
+                                    if (value == true) {
+                                      setState(() {
+                                        cart.addItem = foods[i];
+                                      });
+                                    } else if (value == false) {
+                                      setState(() {
+                                        cart.removeItem = foods[i].id;
+                                      });
+                                    }
+                                  },
+                                )
+                              : Container(),
                           SizedBox(
                             width: size.BLOCK_WIDTH * 3,
                           ),
