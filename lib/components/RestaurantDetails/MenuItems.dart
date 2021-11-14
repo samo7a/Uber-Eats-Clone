@@ -14,15 +14,15 @@ class MenuItems extends StatefulWidget {
 class _MenuItemsState extends State<MenuItems> {
   final List<MenuItem> foods = [
     MenuItem(
-      id: 11.toString(),
+      id: 111.toString(),
       title: "Lasagna",
       description: "With butter lettuce, tomato and sauce bechamel",
-      price: 113.50,
+      price: 13.50,
       image:
           "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
     ),
     MenuItem(
-      id: 22.toString(),
+      id: 222.toString(),
       title: "Tandoori Chicken",
       description:
           "Amazing Indian dish with tenderloin chicken off the sizzle 🔥",
@@ -30,7 +30,7 @@ class _MenuItemsState extends State<MenuItems> {
       image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
     ),
     MenuItem(
-      id: 33.toString(),
+      id: 333.toString(),
       title: "Chilaquiles",
       description:
           "Chilaquiles with cheese and sauce. A delicious mexican dish",
@@ -39,7 +39,75 @@ class _MenuItemsState extends State<MenuItems> {
           "https://upload.wikimedia.org/wikipedia/commons/3/3d/Portada-chilaquiles-rojos.jpg",
     ),
     MenuItem(
-      id: 44.toString(),
+      id: 444.toString(),
+      title: "Chicken Caesar Salad",
+      description:
+          "One can never go wrong with a chicken caesar salad. Healthy options with greens and proteins",
+      price: 11.99,
+      image:
+          "https://www.recipetineats.com/wp-content/uploads/2016/05/Caesar-Salad_7-SQ.jpg",
+    ),
+    MenuItem(
+      id: 115.toString(),
+      title: "Lasagna",
+      description: "With butter lettuce, tomato and sauce bechamel",
+      price: 13.50,
+      image:
+          "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
+    ),
+    MenuItem(
+      id: 226.toString(),
+      title: "Tandoori Chicken",
+      description:
+          "Amazing Indian dish with tenderloin chicken off the sizzle 🔥",
+      price: 19.20,
+      image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
+    ),
+    MenuItem(
+      id: 337.toString(),
+      title: "Chilaquiles",
+      description:
+          "Chilaquiles with cheese and sauce. A delicious mexican dish",
+      price: 14.50,
+      image:
+          "https://upload.wikimedia.org/wikipedia/commons/3/3d/Portada-chilaquiles-rojos.jpg",
+    ),
+    MenuItem(
+      id: 448.toString(),
+      title: "Chicken Caesar Salad",
+      description:
+          "One can never go wrong with a chicken caesar salad. Healthy options with greens and proteins",
+      price: 11.99,
+      image:
+          "https://www.recipetineats.com/wp-content/uploads/2016/05/Caesar-Salad_7-SQ.jpg",
+    ),
+    MenuItem(
+      id: 119.toString(),
+      title: "Lasagna",
+      description: "With butter lettuce, tomato and sauce bechamel",
+      price: 13.50,
+      image:
+          "https://www.modernhoney.com/wp-content/uploads/2019/08/Classic-Lasagna-14-scaled.jpg",
+    ),
+    MenuItem(
+      id: 220.toString(),
+      title: "Tandoori Chicken",
+      description:
+          "Amazing Indian dish with tenderloin chicken off the sizzle 🔥",
+      price: 19.20,
+      image: "https://i.ytimg.com/vi/BKxGodX9NGg/maxresdefault.jpg",
+    ),
+    MenuItem(
+      id: 331.toString(),
+      title: "Chilaquiles",
+      description:
+          "Chilaquiles with cheese and sauce. A delicious mexican dish",
+      price: 14.50,
+      image:
+          "https://upload.wikimedia.org/wikipedia/commons/3/3d/Portada-chilaquiles-rojos.jpg",
+    ),
+    MenuItem(
+      id: 442.toString(),
       title: "Chicken Caesar Salad",
       description:
           "One can never go wrong with a chicken caesar salad. Healthy options with greens and proteins",

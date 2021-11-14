@@ -22,7 +22,9 @@ class About extends StatelessWidget {
         RestaurantTitle(
           title: title,
         ),
-        RestaurantDescription(description: description),
+        RestaurantDescription(
+          description: description,
+        ),
       ],
     );
   }
